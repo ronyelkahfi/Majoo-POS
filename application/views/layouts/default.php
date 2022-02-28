@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css" />
     
-    <title>Majoo POS - <?= $title ?></title>
+    <title>Majoo Teknologi Indonesia - <?= $title ?></title>
     <?php 
     if(!empty($externalCSS)){
       foreach ($externalCSS as $hrefCSS) {
@@ -21,7 +21,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Majoo POS</a>
+        <a class="navbar-brand" href="#">Majoo Teknologi Indonesia</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,16 +42,16 @@
               <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="product") ? 'active' : '' ?>" href="<?= base_url("product") ?>">Product</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="customer") ? 'active' : '' ?>" href="<?= base_url("customer") ?>">Customer</a>
+              <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="customer") ? 'active' : '' ?>" href="#">Customer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="supplier") ? 'active' : '' ?>" href="<?= base_url("supplier") ?>">Supplier</a>
+              <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="supplier") ? 'active' : '' ?>" href="#">Supplier</a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="order") ? 'active' : '' ?>" href="<?= base_url("order/make") ?>">Make Order</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" <?= (!empty($activeMenu)&&$activeMenu=="make_purchase") ? 'active' : '' ?> href="<?= base_url("purchase/make") ?>">Make Purchase</a>
+              <a class="nav-link" <?= (!empty($activeMenu)&&$activeMenu=="make_purchase") ? 'active' : '' ?> href="#">Make Purchase</a>
             </li>
             <?php } ?>
           </ul>
