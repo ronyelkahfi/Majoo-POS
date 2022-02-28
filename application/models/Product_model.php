@@ -1,5 +1,5 @@
 <?php 
-class User_model extends CI_Model{
+class Product_model extends CI_Model{
     private $tableName = "product";
     private $tableId = "id";
 
@@ -7,7 +7,7 @@ class User_model extends CI_Model{
         parent::__construct();
     }
     function insert($data){
-        return $this->db->insert($data);
+        return $this->db->insert($this->tableName,$data);
     }
     function update($data,$id){
         $this->db->where($this->tableId,$id);
@@ -15,14 +15,18 @@ class User_model extends CI_Model{
     }
     function delete(){
         $this->db->where($this->tableId,$id);
-        return $this->db->update($this->tableName);
+        return $this->db->delete($this->tableName);
     }
     function where($arrayWhere){
         foreach($arrayWhere as $key => $value){
             $this->db->where($key,$value);
         }
     }
+    
     function findOne(){
+        if($id!=null){
+            $this->db->where($this->tableId,$id);
+        }
         $this->db->limit(1);
         $sql = $this->db->get($this->tableName);
         if($sql->num_rows()>0){
