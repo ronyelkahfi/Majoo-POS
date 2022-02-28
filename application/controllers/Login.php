@@ -6,7 +6,7 @@ class Login extends CI_Controller{
     }
 
     function index(){
-        $data = ["title"=>"Majoo POS - Login","activeMenu"=>"login"];
+        $data = ["title"=>"Login","activeMenu"=>"login"];
         $this->load->library("form_validation");
         
         $this->form_validation->set_rules("email","Email","required");
