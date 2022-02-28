@@ -6,19 +6,19 @@ defined("BASEPATH") OR exit("No direct script access allowed");
 class String_manipulation
 {
   function hash_password($password){
-		$salt = "interActiveBillingSoft$%_";
+		$salt = "Rahasiawkwk";
 		$hash = hash("sha256", $salt.$password);
 		return $hash;
 	}
 
   function hash_rootpassw($password){
-    $salt = "InActRootUserMbelSoft$%_*_*";
+    $salt = "Rahasiawkwk";
     $hash = hash("sha256", $salt.$password);
     return $hash;
   }
 
 	function hash_authkey($string){
-		$salt = "interActiveAttendance&^%^^&^#$%$%^##$#$";
+		$salt = "Rahasiawkwk";
 		$hash = hash("sha256", $salt.$string);
 		return $hash;
 	}
