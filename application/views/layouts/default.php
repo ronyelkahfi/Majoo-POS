@@ -48,7 +48,7 @@
               <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="supplier") ? 'active' : '' ?>" href="<?= base_url("supplier") ?>">Supplier</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="make_order") ? 'active' : '' ?>" href="<?= base_url("order/make") ?>">Make Order</a>
+              <a class="nav-link <?= (!empty($activeMenu)&&$activeMenu=="order") ? 'active' : '' ?>" href="<?= base_url("order/make") ?>">Make Order</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" <?= (!empty($activeMenu)&&$activeMenu=="make_purchase") ? 'active' : '' ?> href="<?= base_url("purchase/make") ?>">Make Purchase</a>
