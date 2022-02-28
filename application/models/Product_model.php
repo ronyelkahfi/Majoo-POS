@@ -23,7 +23,7 @@ class Product_model extends CI_Model{
         }
     }
     
-    function findOne(){
+    function findOne($id=null){
         if($id!=null){
             $this->db->where($this->tableId,$id);
         }
@@ -35,4 +35,20 @@ class Product_model extends CI_Model{
             return false;
         }
     }
+
+    function getCountData(){
+        $this->db->select("count(id) as total");
+        return $this->db->get($this->tableName)->row()->total;
+    }
+
+    function getAllWithOffset($number,$offset){
+        
+        $this->db->select("product.*");
+        $this->db->select("category.category_name");
+        $this->db->join("category","category.id = product.category_id","left");
+        $sql = $this->db->get($this->tableName,$number,$offset);
+        
+        return $sql->result();
+        
+      }
 }

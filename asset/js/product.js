@@ -23,25 +23,23 @@ function submitProduct() {
 $("#frm-product").submit(function (e) {
   e.preventDefault();
   var formData = new FormData(this);
-  console.log(formData);
+  $("#image-progress").text("0%");
+  $("#image-progress").css("width", "0%");
   $.ajax({
     type: "POST",
     url: url + "product/create",
     data: formData, //$("#frm-product").serialize() + "&image=" + $("#fileimage").val(),
     success: function (res) {
       var result = jQuery.parseJSON(res);
-      console.log(result);
+      //   console.log(result);
+
       if (result.success == false) {
         $("#message").html('<div class="alert alert-danger" role="alert">' + result.message + "</div>");
+        $("#image-progress").text("0%");
+        $("#image-progress").css("width", "0%");
       } else {
         $("#message").html('<div class="alert alert-success" role="alert">Add Product Success</div>');
-        $("#product-name").val("");
-        $("#category").removeClass("select2");
-        $("#category").val("");
-        $("#category").addClass("select2");
-        $("#price").val("");
-        $("#fileimage").val("");
-        $("#description").html("");
+        clearForm();
       }
     },
     xhr: function () {

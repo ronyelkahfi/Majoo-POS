@@ -7,6 +7,8 @@ class Product extends CI_Controller{
     }
 
     function index(){
+        $this->load->library('pagination');
+
         $data = [
             "title"=>"Product",
             "activeMenu"=>"product",
@@ -17,10 +19,36 @@ class Product extends CI_Controller{
                 base_url("asset/js/product.js")
             ]
         ];
+        $jumlah_data = $this->product_model->getCountData();
+        $config['reuse_query_string'] = true;
+		$config['base_url'] = base_url("product/index/".$this->uri->segment(2));
+		$config['total_rows'] = $jumlah_data;
+		$config['per_page'] = 3;
+        $config['full_tag_open'] = '<div class="card-tools">
+                                    <ul class="pagination pagination-sm">';
+        $config['full_tag_close'] = '</ul>
+                                    </div>';
+        $config['first_tag_open']  = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><a href="#" class="page-link">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+        $config['attributes'] = array('class' => 'page-link');
+        $from = !empty($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($config);	
+        $sql   = $this->product_model->getAllWithOffset($config['per_page'],$from);
+        $data["dataProducts"] = $sql;
         $this->layout->display("product/view",$data);
     }
 
-    function form_product($id=""){
+    function form_product($id=null){
         $this->load->model("category_model");
         
 
@@ -38,15 +66,12 @@ class Product extends CI_Controller{
                 base_url("asset/js/product.js")
             ]
         ];
-        $this->load->library("form_validation");
-        $this->form_validation->set_rules("product-name","Product Name","required");
-        $this->form_validation->set_rules("category","Category","required");
-        $this->form_validation->set_rules("price","Price","required");
-        $this->form_validation->set_rules("image","Product Image","required");
-        $this->form_validation->set_rules("Description","Description","required");
-        if($this->form_validation->run()==true){
-            
+        
+        if($id!=null){
+            $data["productID"] = $id;
+            $data["dataProduct"] = $this->product_model->findOne($id);
         }
+        
         $data["categories"] = $this->category_model->getAll();
         $this->layout->display("product/form_product",$data);
     }
@@ -58,6 +83,7 @@ class Product extends CI_Controller{
         $this->form_validation->set_rules("price","Price","required");
         // $this->form_validation->set_rules("image","Product Image","required");
         $this->form_validation->set_rules("description","Description","required");
+        // usleep(100000000);
         if($this->form_validation->run()==true){
             $resultUpload = $this->uploadImage();
             if($resultUpload["success"]==false){
