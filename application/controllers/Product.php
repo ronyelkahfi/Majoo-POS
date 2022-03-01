@@ -45,6 +45,10 @@ class Product extends CI_Controller{
         $this->pagination->initialize($config);	
         $sql   = $this->product_model->getAllWithOffset($config['per_page'],$from);
         $data["dataProducts"] = $sql;
+        if(!empty($this->session->userdata("msg"))){
+            $data["msg"] = $this->session->userdata("msg");
+            $this->session->unset_userdata("msg");
+        }
         $this->layout->display("product/view",$data);
     }
 
@@ -145,5 +149,18 @@ class Product extends CI_Controller{
             ];
         }
         return $result;
+    }
+
+    function delete($id){
+        $dataProduct = $this->product_model->findOne($id);
+        if($dataProduct!=false){
+            if(unlink(FCPATH."upload".DIRECTORY_SEPARATOR."product".DIRECTORY_SEPARATOR.$dataProduct->image_name)){
+                $result = $this->product_model->delete($id);
+                if($result){
+                    $this->session->set_userdata("msg","Success Delete Product");
+                    redirect("product");
+                }
+            }
+        }
     }
 }

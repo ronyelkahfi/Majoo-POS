@@ -6,7 +6,7 @@ class Home extends CI_Controller{
     }
 
     function public(){
-        $data = ["title"=>"Majoo POS - Welcome","activeMenu"=>"home"];
+        $data = ["title"=>"Majoo Teknologi Indonesia - Welcome","activeMenu"=>"home"];
         $this->layout->display("public",$data);
     }
 }

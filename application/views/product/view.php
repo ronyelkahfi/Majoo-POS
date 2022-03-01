@@ -9,6 +9,9 @@
         <div class="col-md-12 mb-3" >
             <a href="<?= base_url("product/form_product") ?>" class="btn btn-primary">Add Product</a>
         </div>
+        <div class="col-md-12 mb-3">
+                <?= !empty($msg) ? '<div class="alert alert-success" role="alert">'.$msg.'</div>' : ''; ?>
+            </div> 
             <div class="col-md-12 table-responsive" >
                 <table class="table">
                     <thead>
@@ -25,7 +28,7 @@
                         <?php 
                         foreach($dataProducts as $row){
                             $btnEdit = '<a href="'.base_url('product/form_product/'.$row->id).'"><i class="fa-solid fa-pen-to-square"></i></a>';
-                            $btnDelete = '<a class="text-danger" href="'.base_url('product/delete/'.$row->id).'"><i class="fa-solid fa-trash"></i></a>';
+                            $btnDelete = '<a onclick="return confirm(\'Are you sure want to delete this?\')" class="text-danger" href="'.base_url('product/delete/'.$row->id).'"><i class="fa-solid fa-trash"></i></a>';
                             echo '<tr>
                                     <td>'.$row->product_name.'</td>
                                     <td>'.$row->category_name.'</td>
