@@ -27,7 +27,7 @@
                         <?php 
                         foreach($categories->result() as $category){
                             $btnEdit = '<a href="'.base_url('category/form_category/'.$category->id).'"><i class="fa-solid fa-pen-to-square"></i></a>';
-                            $btnDelete = '<a class="text-danger" href="'.base_url('category/delete/'.$category->id).'"><i class="fa-solid fa-trash"></i></a>';
+                            $btnDelete = '<a onclick="return confirm(\'Are you sure want to delete this?\')" class="text-danger" href="'.base_url('category/delete/'.$category->id).'"><i class="fa-solid fa-trash"></i></a>';
 
                             echo '<tr>
                                 <td>'.$category->category_name.'</td>
