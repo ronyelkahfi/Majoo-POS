@@ -33,4 +33,9 @@ class Login extends CI_Controller{
         
         $this->layout->display("login",$data);
     }
+
+    function logout(){
+        $this->session->sess_destroy();
+        redirect("login");
+    }
 }

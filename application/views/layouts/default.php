@@ -53,6 +53,9 @@
             <li class="nav-item">
               <a class="nav-link" <?= (!empty($activeMenu)&&$activeMenu=="make_purchase") ? 'active' : '' ?> href="#">Make Purchase</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link"  href="<?= base_url("login/logout")?>">Logout</a>
+            </li>
             <?php } ?>
           </ul>
         </div>
